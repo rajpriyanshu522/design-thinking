@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UnMukt: Science & Art of Design Thinking — Complete Learning Resource</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #1a1208;
+    --ink-muted: #4a3f28;
+    --ink-light: #7a6a50;
+    --paper: #faf8f2;
+    --paper-warm: #f5f0e4;
+    --paper-dark: #ede8d8;
+    --accent: #c4521a;
+    --accent-light: #e8763a;
+    --accent-pale: #fdeee5;
+    --gold: #b8860b;
+    --gold-pale: #fdf8e7;
+    --teal: #1a6b6b;
+    --teal-pale: #e0f0f0;
+    --plum: #5c2d6b;
+    --plum-pale: #f0e8f5;
+    --border: #d4c9aa;
+    --border-light: #e8e0cc;
+    --shadow: rgba(26,18,8,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(196,82,26,0.05) 40px, rgba(196,82,26,0.05) 41px
+    );
+  }
+  .cover-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    border: 1px solid rgba(232,118,58,0.4);
+    padding: 6px 18px;
+    margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cover h1 span { color: var(--accent-light); }
+  .cover-sub {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(250,248,242,0.7);
+    font-style: italic;
+    margin-bottom: 40px;
+  }
+  .cover-author {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--accent-light);
+  }
+  .cover-divider {
+    width: 80px; height: 2px;
+    background: var(--accent);
+    margin: 30px auto;
+  }
+  .cover-meta {
+    display: flex; justify-content: center; gap: 40px;
+    margin-top: 50px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .cover-meta-item { text-align: center; }
+  .cover-meta-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--accent-light);
+  }
+  .cover-meta-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(250,248,242,0.5); margin-top: 4px;
+  }
+
+  /* NAV */
+  .toc {
+    background: var(--paper-warm);
+    border-bottom: 2px solid var(--border);
+    padding: 50px 60px;
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 30px;
+  }
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    text-decoration: none; color: var(--ink-muted);
+    font-size: 14px; transition: all 0.2s;
+    background: var(--paper);
+  }
+  .toc-item:hover { background: var(--paper-dark); color: var(--accent); border-color: var(--accent); }
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    min-width: 24px;
+  }
+
+  /* MAIN CONTAINER */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+  /* UNIT HEADERS */
+  .unit-header {
+    padding: 70px 0 20px;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 50px;
+  }
+  .unit-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); display: block; margin-bottom: 12px;
+  }
+  .unit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px; font-weight: 900; line-height: 1.1;
+    color: var(--ink);
+  }
+  .unit-desc {
+    margin-top: 16px; font-size: 17px; font-style: italic;
+    color: var(--ink-muted); max-width: 600px;
+  }
+
+  /* CHAPTER */
+  .chapter {
+    margin-bottom: 70px;
+    padding-bottom: 70px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .chapter-header {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 36px;
+  }
+  .chapter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px; font-weight: 900;
+    color: var(--paper-dark); line-height: 1;
+    min-width: 60px; text-align: right;
+    position: relative; top: -8px;
+  }
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700;
+    color: var(--ink); padding-top: 8px;
+    line-height: 1.2;
+  }
+  .chapter-subtitle {
+    font-size: 14px; color: var(--accent); margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* CONTENT SECTIONS */
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin: 36px 0 14px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  h4 {
+    font-size: 16px; font-weight: 600;
+    color: var(--ink-muted); margin: 24px 0 10px;
+    text-transform: uppercase; letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  p { margin-bottom: 16px; color: var(--ink-muted); }
+
+  /* CALLOUT BOXES */
+  .callout {
+    margin: 28px 0;
+    padding: 22px 26px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .callout-definition {
+    background: var(--gold-pale);
+    border: 1px solid #e8d080;
+    border-left: 4px solid var(--gold);
+  }
+  .callout-story {
+    background: var(--plum-pale);
+    border: 1px solid #d0aaee;
+    border-left: 4px solid var(--plum);
+  }
+  .callout-example {
+    background: var(--teal-pale);
+    border: 1px solid #80d0d0;
+    border-left: 4px solid var(--teal);
+  }
+  .callout-insight {
+    background: var(--accent-pale);
+    border: 1px solid #f0b090;
+    border-left: 4px solid var(--accent);
+  }
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 10px;
+    display: block;
+  }
+  .callout-definition .callout-label { color: var(--gold); }
+  .callout-story .callout-label { color: var(--plum); }
+  .callout-example .callout-label { color: var(--teal); }
+  .callout-insight .callout-label { color: var(--accent); }
+  .callout p { color: var(--ink); margin-bottom: 8px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* QUOTE */
+  blockquote {
+    margin: 28px 0;
+    padding: 24px 30px;
+    background: var(--paper-dark);
+    border-left: 4px solid var(--ink);
+    font-style: italic; font-size: 17px;
+    color: var(--ink);
+  }
+  blockquote cite {
+    display: block; margin-top: 12px;
+    font-style: normal; font-size: 13px;
+    color: var(--ink-light); font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* FRAMEWORK GRIDS */
+  .framework-grid {
+    display: grid;
+    gap: 2px;
+    margin: 24px 0;
+  }
+  .framework-grid-2 { grid-template-columns: 1fr 1fr; }
+  .framework-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .framework-grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+  .fcard {
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .fcard-accent { background: var(--accent); color: white; }
+  .fcard-gold { background: var(--gold); color: white; }
+  .fcard-teal { background: var(--teal); color: white; }
+  .fcard-plum { background: var(--plum); color: white; }
+  .fcard-ink { background: var(--ink); color: var(--paper); }
+  .fcard-light { background: var(--paper-warm); border: 1px solid var(--border); }
+
+  .fcard-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 900;
+    display: block; line-height: 1;
+  }
+  .fcard-word {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    display: block; margin-top: 6px; opacity: 0.9;
+  }
+  .fcard-desc {
+    font-size: 12px; margin-top: 8px; opacity: 0.8; line-height: 1.4;
+  }
+
+  /* PROCESS FLOW */
+  .process-flow {
+    display: flex; align-items: flex-start;
+    gap: 0; margin: 28px 0; overflow-x: auto;
+  }
+  .process-step {
+    flex: 1; min-width: 130px;
+    text-align: center; padding: 20px 12px;
+    position: relative;
+  }
+  .process-step::after {
+    content: '→';
+    position: absolute; right: -12px; top: 22px;
+    font-size: 20px; color: var(--ink-light); z-index: 1;
+  }
+  .process-step:last-child::after { display: none; }
+  .ps-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .ps-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    display: block; margin-bottom: 6px;
+  }
+  .ps-role {
+    font-size: 12px; color: var(--ink-light);
+    font-style: italic;
+  }
+
+  /* NOTES / BULLETS */
+  .notes-list {
+    margin: 16px 0 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .notes-list li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--ink-muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .notes-list li:last-child { border-bottom: none; }
+  .notes-list li::before {
+    content: '▸';
+    position: absolute; left: 0; top: 9px;
+    color: var(--accent); font-size: 12px;
+  }
+  .notes-list li strong {
+    color: var(--ink); font-weight: 600;
+  }
+
+  /* MNEMONIC */
+  .mnemonic {
+    display: inline-flex; gap: 4px;
+    margin: 16px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+  }
+  .mnemonic-letter {
+    padding: 6px 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 4px;
+  }
+
+  /* MIND MAP */
+  .mindmap {
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 30px;
+    margin: 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; line-height: 2;
+    color: var(--ink-muted);
+  }
+  .mindmap-root {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--accent); margin-bottom: 4px;
+  }
+  .mindmap-l1 { padding-left: 20px; color: var(--ink); font-weight: 500; }
+  .mindmap-l2 { padding-left: 44px; color: var(--ink-muted); }
+  .mindmap-l3 { padding-left: 68px; color: var(--ink-light); font-size: 12px; }
+
+  /* REFLECTION */
+  .reflection {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 32px;
+    border-radius: 8px;
+    margin: 36px 0;
+  }
+  .reflection-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent-light); margin-bottom: 12px; display: block;
+  }
+  .reflection p {
+    color: rgba(250,248,242,0.85); font-style: italic; font-size: 17px;
+    margin: 0;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    margin: 20px 0; font-size: 14px;
+  }
+  .compare-table th {
+    background: var(--ink); color: var(--paper);
+    padding: 12px 16px; text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .compare-table td {
+    padding: 12px 16px; border-bottom: 1px solid var(--border-light);
+    color: var(--ink-muted); vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--paper-warm); }
+
+  /* QUICK REVISION */
+  .revision-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 30px 36px;
+    margin: 24px 0;
+  }
+  .revision-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--accent); margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* LAW CARDS */
+  .law-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin: 24px 0;
+  }
+  .law-card {
+    padding: 24px 20px; border-radius: 8px;
+    text-align: center;
+  }
+  .law-card:nth-child(1) { background: var(--accent); color: white; }
+  .law-card:nth-child(2) { background: var(--teal); color: white; }
+  .law-card:nth-child(3) { background: var(--plum); color: white; }
+  .law-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    opacity: 0.7; display: block; margin-bottom: 10px;
+  }
+  .law-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    display: block; margin-bottom: 12px; line-height: 1.2;
+  }
+  .law-desc { font-size: 13px; opacity: 0.85; line-height: 1.5; }
+
+  /* LEVEL ARCHITECTURE */
+  .levels {
+    display: flex; flex-direction: column; gap: 2px;
+    margin: 24px 0;
+  }
+  .level-row {
+    display: flex; align-items: center; gap: 0;
+  }
+  .level-label {
+    min-width: 60px; padding: 14px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    text-align: center;
+  }
+  .level-content {
+    flex: 1; padding: 14px 20px;
+    font-size: 14px;
+  }
+  .level-row:nth-child(1) .level-label { background: var(--ink); color: var(--paper); }
+  .level-row:nth-child(1) .level-content { background: rgba(26,18,8,0.08); }
+  .level-row:nth-child(2) .level-label { background: var(--ink-muted); color: var(--paper); }
+  .level-row:nth-child(2) .level-content { background: rgba(74,63,40,0.08); }
+  .level-row:nth-child(3) .level-label { background: var(--ink-light); color: var(--paper); }
+  .level-row:nth-child(3) .level-content { background: rgba(122,106,80,0.08); }
+  .level-row:nth-child(4) .level-label { background: var(--border); color: var(--ink); }
+  .level-row:nth-child(4) .level-content { background: rgba(212,201,170,0.2); }
+
+  /* PAGE FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,242,0.5);
+    text-align: center;
+    padding: 40px;
+    margin-top: 80px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1px;
+  }
+
+  /* UTILITY */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px; text-transform: uppercase;
+    background: var(--accent-pale); color: var(--accent);
+    margin: 2px;
+  }
+  .divider { height: 1px; background: var(--border-light); margin: 40px 0; }
+  .em { color: var(--accent); font-weight: 600; }
+  .highlight {
+    background: linear-gradient(120deg, rgba(196,82,26,0.15) 0%, rgba(196,82,26,0.15) 100%);
+    padding: 0 3px; border-radius: 2px;
+  }
+
+  @media (max-width: 700px) {
+    .cover { padding: 50px 24px; }
+    .cover h1 { font-size: 36px; }
+    .container { padding: 0 20px; }
+    .toc { padding: 30px 20px; }
+    .law-grid { grid-template-columns: 1fr; }
+    .framework-grid-5 { grid-template-columns: repeat(3, 1fr); }
+    .process-flow { flex-direction: column; }
+    .process-step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div style="position:relative;z-index:1">
+    <div class="cover-badge">Complete Learning Resource · Professor's Edition</div>
+    <h1>UnMukt<br><span>Design Thinking</span></h1>
+    <div class="cover-sub">Science and Art of Design Thinking by Arun Jain</div>
+    <div class="cover-divider"></div>
+    <div class="cover-author">School of Design Thinking · 2020</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-num">7</div>
+        <div class="cover-meta-label">Chapters</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-num">3</div>
+        <div class="cover-meta-label">Laws</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-num">13</div>
+        <div class="cover-meta-label">Frameworks</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-num">5</div>
+        <div class="cover-meta-label">Process Steps</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">Table of Contents</div>
+  <div class="toc-grid">
+    <a href="#ch1" class="toc-item"><span class="toc-num">01</span> Introduction & Learning</a>
+    <a href="#ch2" class="toc-item"><span class="toc-num">02</span> Design Definitions & Stories</a>
+    <a href="#ch3" class="toc-item"><span class="toc-num">03</span> Three Laws of Design Thinking</a>
+    <a href="#ch4" class="toc-item"><span class="toc-num">04</span> Design Mind (SEPIA · DCAFE · VAL)</a>
+    <a href="#ch5" class="toc-item"><span class="toc-num">05</span> Design Process (5 Steps)</a>
+    <a href="#ch6" class="toc-item"><span class="toc-num">06</span> Design Frameworks</a>
+    <a href="#ch7" class="toc-item"><span class="toc-num">07</span> Space, Methods & Tools</a>
+    <a href="#revision" class="toc-item"><span class="toc-num">⚡</span> Quick Revision Sheet</a>
+    <a href="#mindmap" class="toc-item"><span class="toc-num">🗺</span> Master Mind Map</a>
+    <a href="#connections" class="toc-item"><span class="toc-num">∞</span> Concept Connections</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- UNIT 1 -->
+  <div class="unit-header" id="ch1">
+    <span class="unit-label">Unit 1 · Chapters 1–2</span>
+    <div class="unit-title">Foundations of Design Thinking</div>
+    <p class="unit-desc">Understanding how we learn, listen, observe, and define what "design" truly means.</p>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">01</div>
+      <div>
+        <div class="chapter-title">Introduction: Learning, Listening, Observation & Dialogue</div>
+        <div class="chapter-subtitle">The four pillars before we even begin designing</div>
+      </div>
+    </div>
+
+    <h3>1.1 What is True Learning?</h3>
+    <blockquote>
+      "I am talking about LEARNING — the insatiable curiosity that drives the adolescent boy to absorb everything he can see or hear or read about gasoline engines in order to improve the efficiency and speed of his cruiser."
+      <cite>— Carl Rogers</cite>
+    </blockquote>
+
+    <p>Design Thinking begins not with a process, but with a <span class="em">state of mind</span>. True learning is active, not passive. It is not the "lifeless, sterile" memorisation forced by conformity. It is driven by curiosity and the personal urgency to know.</p>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">The Learning Process Diagram (from Tatvasutra, Jain Scripture, 1st Century AD)</span>
+      <p>Three inputs — <strong>Observation</strong>, <strong>Experiential (direct experience)</strong>, and <strong>Intention (purposeful direction)</strong> — feed into four processing layers:</p>
+      <ul style="padding-left:20px;color:var(--ink);line-height:2">
+        <li><strong>Perception</strong> — Initial sensing of information</li>
+        <li><strong>Conception</strong> — Forming mental models</li>
+        <li><strong>Judgement</strong> — Evaluating and comparing</li>
+        <li><strong>Retention</strong> — Storing into long-term knowledge</li>
+      </ul>
+      <p style="margin-top:12px">These four layers interact with a <strong>Knowledge Network</strong> containing: Memory, Logic, Recognition, and Inference nodes.</p>
+    </div>
+
+    <h3>1.2 Listening: The Foundation of Real Learning</h3>
+    <blockquote>
+      "If you listen with knowledge, with what you have learned, then actually you are not listening; you are interpreting; you are comparing, judging, evaluating..."
+      <cite>— J. Krishnamurti</cite>
+    </blockquote>
+
+    <p>Krishnamurti's insight is radical: most of what we call "listening" is actually <span class="em">filtering</span> — we match incoming information against our existing patterns and accept or reject accordingly. True listening requires <strong>suspending the past</strong>.</p>
+
+    <h3>1.3 Dialogue vs. Discussion</h3>
+    <p>This is one of the most actionable distinctions in the entire book:</p>
+
+    <table class="compare-table">
+      <tr>
+        <th>Dimension</th>
+        <th>Dialogue</th>
+        <th>Discussion</th>
+      </tr>
+      <tr>
+        <td><strong>Goal</strong></td>
+        <td>Design conversations; multiple alternatives</td>
+        <td>Prove who is right</td>
+      </tr>
+      <tr>
+        <td><strong>Mode</strong></td>
+        <td>Deep listening without bias or judgement</td>
+        <td>"Boxing" of thoughts — me vs. others</td>
+      </tr>
+      <tr>
+        <td><strong>Outcome</strong></td>
+        <td>Progressive; generative; inclusive</td>
+        <td>Combative; stagnant; exclusive</td>
+      </tr>
+      <tr>
+        <td><strong>Design Impact</strong></td>
+        <td>Converts frictional conflict into creative conflict</td>
+        <td>Reinforces existing silos</td>
+      </tr>
+    </table>
+
+    <h3>1.4 Observation and Reading</h3>
+    <ul class="notes-list">
+      <li>Observation shifts your <strong>lens</strong>: Apple connected MP3 + phone + camera. IKEA removed non-value-added costs by having consumers assemble furniture — both are outcomes of observing patterns nobody else noticed.</li>
+      <li>Reading expands your <strong>horizon of thoughts</strong>. It creates new Knowledge Packets (KPs), perspectives, and helps connect dots across disciplines.</li>
+      <li>Reading also helps <strong>unearth blind spots</strong> — the "don't know what I don't know" zone.</li>
+    </ul>
+
+    <div class="mindmap">
+      <div class="mindmap-root">Chapter 1: Introduction</div>
+      <div class="mindmap-l1">├── Learning Process</div>
+      <div class="mindmap-l2">├── Inputs: Observation / Experiential / Intention</div>
+      <div class="mindmap-l2">├── Layers: Perception → Conception → Judgement → Retention</div>
+      <div class="mindmap-l2">└── Knowledge Network: Memory / Logic / Recognition / Inference</div>
+      <div class="mindmap-l1">├── Listening (Krishnamurti)</div>
+      <div class="mindmap-l2">└── True listening = attention without conformity or comparison</div>
+      <div class="mindmap-l1">├── Dialogue vs Discussion</div>
+      <div class="mindmap-l2">├── Dialogue → alternatives, progressive, creative</div>
+      <div class="mindmap-l2">└── Discussion → combative, who is right</div>
+      <div class="mindmap-l1">└── Observation + Reading</div>
+      <div class="mindmap-l2">├── Notice patterns (IKEA, Apple)</div>
+      <div class="mindmap-l2">└── Expand KPs and unearth blind spots</div>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>Where in your daily life are you engaging in "discussion" (trying to be right) when you should be engaging in "dialogue" (designing alternatives)? Think of one meeting this week.</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2 -->
+  <div class="chapter" id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num">02</div>
+      <div>
+        <div class="chapter-title">Design Definitions and Stories</div>
+        <div class="chapter-subtitle">Three powerful definitions + two extraordinary case studies</div>
+      </div>
+    </div>
+
+    <h3>2.1 Case Study: Sikhism as Design Thinking in Communities</h3>
+    <p>A brilliant question was asked at a CII conference: <em>"Can Design Thinking be applied to designing a community?"</em> Arun Jain's answer: <strong>Sikhism is a masterclass in it.</strong></p>
+
+    <div class="callout callout-example">
+      <span class="callout-label">7 Design Principles Embedded in Sikhism</span>
+      <ul class="notes-list" style="margin:0">
+        <li><strong>Worship of Knowledge (not idols):</strong> Guru Granth Sahib is the authority — knowledge is divine. Best practices drawn from Hinduism and Islam are included (cross-industry thinking!).</li>
+        <li><strong>Simplification of rituals:</strong> Major ceremonies consolidated; Sunday chosen for convenience (user experience design).</li>
+        <li><strong>Brand Identity:</strong> Turban and beard — visually identifiable from a distance (brand differentiation).</li>
+        <li><strong>Identity & Pride:</strong> "Jeet" (victory) built into names — Kamaljeet, Paramjeet (internal motivation design).</li>
+        <li><strong>Balancing Pride with Humility:</strong> Kar Seva (cleaning shoes, floors), Langar (eating together irrespective of hierarchy) — counters ego's danger.</li>
+        <li><strong>Community Bonding through Fun:</strong> Bhangra as a community dance — breaking inhibitions, building culture.</li>
+      </ul>
+    </div>
+
+    <h3>2.2 The Three Definitions of Design Thinking</h3>
+
+    <h4>Definition 1: The IDEO Model (Venn Diagram)</h4>
+    <div class="framework-grid framework-grid-3" style="margin:16px 0">
+      <div class="fcard fcard-accent">
+        <span class="fcard-letter">D</span>
+        <span class="fcard-word">Desirability</span>
+        <div class="fcard-desc">Human inspiration — What do people truly need?</div>
+      </div>
+      <div class="fcard fcard-teal">
+        <span class="fcard-letter">F</span>
+        <span class="fcard-word">Feasibility</span>
+        <div class="fcard-desc">Technology ideation — What is technically possible?</div>
+      </div>
+      <div class="fcard fcard-plum">
+        <span class="fcard-letter">V</span>
+        <span class="fcard-word">Viability</span>
+        <div class="fcard-desc">Business implementation — What can be sustainable?</div>
+      </div>
+    </div>
+    <p>Design Thinking lives at the <strong>intersection</strong> of all three. Missing any one creates an incomplete solution: desirable but infeasible, feasible but not wanted, or viable but not human-centered.</p>
+
+    <h4>Definition 2: Roger Martin's Funnel (The Design of Business, 2009)</h4>
+    <div class="levels">
+      <div class="level-row">
+        <div class="level-label">Mystery</div>
+        <div class="level-content">A phenomenon that is not yet understood — "Why does this happen?" Raw, unexplained reality. The starting point of all innovation.</div>
+      </div>
+      <div class="level-row">
+        <div class="level-label">Heuristic</div>
+        <div class="level-content">A working rule of thumb — a hypothesis that guides action without full certainty. "This seems to work, but we don't know exactly why."</div>
+      </div>
+      <div class="level-row">
+        <div class="level-label">Algorithm</div>
+        <div class="level-content">A reliable, repeatable, codified process. "We know exactly what to do." Full mastery and institutionalisation.</div>
+      </div>
+    </div>
+    <p>Design Thinking is the process of <strong>moving knowledge down this funnel</strong> — from mystery toward algorithm — and also the courage to <em>re-enter mystery</em> when algorithms become outdated.</p>
+
+    <h4>Definition 3: The Holistic Connect (Arun Jain's Own Model)</h4>
+    <div class="framework-grid framework-grid-2" style="gap:12px;margin:16px 0">
+      <div class="callout callout-definition" style="margin:0">
+        <span class="callout-label">Understanding Requirements</span>
+        <p><strong>Stated:</strong> What the customer says they want<br><strong>Unstated:</strong> What they need but haven't articulated</p>
+      </div>
+      <div class="callout callout-example" style="margin:0">
+        <span class="callout-label">Observing Patterns</span>
+        <p><strong>Patterns:</strong> What consistently works<br><strong>Anti-patterns:</strong> What consistently fails</p>
+      </div>
+      <div class="callout callout-story" style="margin:0">
+        <span class="callout-label">Connecting the Dots</span>
+        <p><strong>Within the Box:</strong> Improve within domain<br><strong>Outside the Box:</strong> Cross-domain breakthroughs</p>
+      </div>
+      <div class="callout callout-insight" style="margin:0">
+        <span class="callout-label">Unearthing Blind Spots</span>
+        <p><strong>"Don't know what I don't know"</strong> — The most dangerous gap is the unknown unknown.</p>
+      </div>
+    </div>
+
+    <h3>2.3 Real-World Design Case Studies</h3>
+
+    <div class="callout callout-example">
+      <span class="callout-label">Case Study: Devanagari Script (Hindi Alphabet)</span>
+      <p>The Hindi alphabet is a masterpiece of pattern-based design. Every letter group is organized by the <strong>physical source of the sound in the mouth</strong>:</p>
+      <ul style="padding-left:20px;color:var(--ink);line-height:1.9">
+        <li><strong>क ख ग घ (ka, kha, ga, gha):</strong> Deep throat (कंठ)</li>
+        <li><strong>च छ ज (cha, chha, ja):</strong> Tongue touching upper palate (तालु)</li>
+        <li><strong>त थ द (ta, tha, da):</strong> Tongue touching upper surface</li>
+        <li><strong>प फ ब भ (pa, pha, ba, bha):</strong> Lips</li>
+        <li><strong>स श ष (sa, sha):</strong> Tongue touching teeth</li>
+      </ul>
+      <p style="margin-top:10px">Lesson: <strong>Observe the underlying pattern → Design the full system.</strong></p>
+    </div>
+
+    <div class="callout callout-example">
+      <span class="callout-label">Case Study: South Indian Food Chain</span>
+      <p>Five design objectives: Nutrition · Variety · Simplicity · Easy digestion · Minimum waste. How the South Indian food chain achieves all five:</p>
+      <ul style="padding-left:20px;color:var(--ink);line-height:1.9">
+        <li><strong>Adversity as Advantage:</strong> Tropical heat → fermentation as an ingredient (dosa batter)</li>
+        <li><strong>Nutrition:</strong> 1/3 dal + 2/3 rice = balanced proteins + carbohydrates</li>
+        <li><strong>Variety from one batter:</strong> Dosa / Uthappam / Idli — same input, different outputs (component-based thinking)</li>
+        <li><strong>Simplicity:</strong> Cook rice once → 10+ dishes (tamarind rice, coconut rice, curd rice...)</li>
+        <li><strong>Easy digestion:</strong> Pre-fermentation breaks down proteins and carbohydrates</li>
+        <li><strong>Zero waste:</strong> Batter usable for multiple days; leftover rice becomes next morning's dish</li>
+      </ul>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>Think of a system you use daily (your morning routine, your workflow, your city's transport). Which of the three definitions of Design Thinking reveals the biggest design gap in it?</p>
+    </div>
+  </div>
+
+  <!-- UNIT 2 -->
+  <div class="unit-header" id="ch3">
+    <span class="unit-label">Unit 2 · Chapter 3</span>
+    <div class="unit-title">The Three Laws of Design Thinking</div>
+    <p class="unit-desc">Universal principles that govern all great design. Violate them and no process can save you.</p>
+  </div>
+
+  <!-- CHAPTER 3 -->
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">03</div>
+      <div>
+        <div class="chapter-title">Three Laws of Design Thinking©</div>
+        <div class="chapter-subtitle">The governing physics of design — not guidelines, but laws</div>
+      </div>
+    </div>
+
+    <div class="law-grid">
+      <div class="law-card">
+        <span class="law-num">1st Law</span>
+        <span class="law-title">Less is More</span>
+        <div class="law-desc">Focus on what matters most. Remove redundancy. Simplification is the ultimate sophistication.</div>
+      </div>
+      <div class="law-card">
+        <span class="law-num">2nd Law</span>
+        <span class="law-title">Last 2% = 200%</span>
+        <div class="law-desc">The final differentiating detail (USP) creates a disproportionately massive impact.</div>
+      </div>
+      <div class="law-card">
+        <span class="law-num">3rd Law</span>
+        <span class="law-title">Theory of Prioritisation</span>
+        <div class="law-desc">Prioritisation must be exponential, not linear. Focus energy on 1000g items, not 10g distractions.</div>
+      </div>
+    </div>
+
+    <h3>Law 1: Less is More</h3>
+    <p>The book presents a memorable visual: a chaotic pile of different 3D shapes (cubes, spheres, pyramids) transforms into a clean, stacked column of identical cylinders. The message — <span class="em">complexity is not sophistication</span>. True mastery is the ability to identify what is essential and eliminate everything else.</p>
+    <ul class="notes-list">
+      <li><strong>In products:</strong> Apple's iPod vs. other MP3 players of the era. Apple removed buttons, not added them.</li>
+      <li><strong>In processes:</strong> An expert eye surgeon performs cataract surgery in 15 minutes (not 45) by eliminating redundant steps — that is expertise enabling simplification.</li>
+      <li><strong>In communication:</strong> Define the problem in 5–7 words, not 5–7 paragraphs.</li>
+    </ul>
+
+    <h3>Law 2: Last 2% = 200% Impact</h3>
+    <p>A bar chart in the book shows a small top layer labelled "2%" pointing to a towering column labelled "200%." The insight: the <strong>Unique Selling Proposition</strong> — the final, tiny differentiator — creates vastly disproportionate value. This is not about working 200% harder; it is about identifying the precise 2% that constitutes your differentiation.</p>
+
+    <div class="callout callout-insight">
+      <span class="callout-label">Application Question</span>
+      <p>What is the last 2% of your product or service that customers actually remember, recommend, or pay a premium for? That is your real USP. Everything else is table stakes.</p>
+    </div>
+
+    <h3>Law 3: Theory of Prioritisation (Exponential, Not Linear)</h3>
+    <p>The book uses a weight analogy: a scale shows 10g → 100g → 1000g. Most people manage their priorities linearly (everything gets roughly equal time). Great designers think <strong>exponentially</strong>: a 1000g item deserves 100× more attention than a 10g item. This law is what makes the Convergence step of the process work — you must <em>ruthlessly delete 80% of ideas</em>.</p>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">Memory Aid — The 3 Laws Sequence</span>
+      <p><strong>FIRST</strong> simplify (Less is More) → <strong>THEN</strong> find your differentiator (Last 2%) → <strong>THEN</strong> prioritise exponentially (1000g). This is the sequence: declutter, differentiate, concentrate.</p>
+    </div>
+
+    <div class="mindmap">
+      <div class="mindmap-root">Chapter 3: Three Laws</div>
+      <div class="mindmap-l1">├── Law 1: Less is More</div>
+      <div class="mindmap-l2">├── Focus on what matters most</div>
+      <div class="mindmap-l2">└── Remove redundancy (chaos → clean column)</div>
+      <div class="mindmap-l1">├── Law 2: Last 2% = 200%</div>
+      <div class="mindmap-l2">├── Identify the USP / differentiator</div>
+      <div class="mindmap-l2">└── Tiny detail → massive impact</div>
+      <div class="mindmap-l1">└── Law 3: Theory of Prioritisation</div>
+      <div class="mindmap-l2">├── Exponential not linear</div>
+      <div class="mindmap-l2">├── 10g / 100g / 1000g framework</div>
+      <div class="mindmap-l2">└── Delete 80% of ideas (Convergence)</div>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>In your current project: What is the 1000g priority that will create the most impact? And what three 10g distractions can you eliminate or delegate today?</p>
+    </div>
+  </div>
+
+  <!-- UNIT 3 -->
+  <div class="unit-header" id="ch4">
+    <span class="unit-label">Unit 3 · Chapter 4</span>
+    <div class="unit-title">The Design Mind</div>
+    <p class="unit-desc">The most powerful — and most underestimated — chapter. Before any process, the mind must be prepared.</p>
+  </div>
+
+  <!-- CHAPTER 4 -->
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">04</div>
+      <div>
+        <div class="chapter-title">Design Mind: SEPIA · DCAFE · VAL</div>
+        <div class="chapter-subtitle">13 forces that determine whether design thinking succeeds or fails</div>
+      </div>
+    </div>
+
+    <h3>4.0 Anatomy of Knowledge</h3>
+    <div class="callout callout-definition">
+      <span class="callout-label">Core Definitions</span>
+      <p><strong>Knowledge Packets (KPs):</strong> Unit measures of knowledge — the smallest discrete piece of knowledge you hold. A fact, a skill step, a memory.</p>
+      <p><strong>Knowledge Clusters (KCs):</strong> Groups of KPs with similar characteristics or belonging to the same competency domain. Examples: Marketing KC, Finance KC, Legal KC, Technology KC.</p>
+      <p><strong>Comfort Zone:</strong> The boundary that contains your familiar KCs. Operating within it requires minimal effort but produces barely acceptable results (Oxford Dictionary definition: "a settled method of working that yields only barely acceptable results").</p>
+    </div>
+
+    <h3>4.1 SEPIA — The 5 Forces of Growth That DRIVE Design</h3>
+    <div class="mnemonic">
+      <span class="mnemonic-letter">S</span>
+      <span class="mnemonic-letter">E</span>
+      <span class="mnemonic-letter">P</span>
+      <span class="mnemonic-letter">I</span>
+      <span class="mnemonic-letter">A</span>
+    </div>
+
+    <div class="framework-grid framework-grid-5" style="gap:2px;margin:16px 0">
+      <div class="fcard fcard-accent">
+        <span class="fcard-letter">S</span>
+        <span class="fcard-word">Skill</span>
+        <div class="fcard-desc">Set pattern of KPs through training</div>
+      </div>
+      <div class="fcard fcard-gold">
+        <span class="fcard-letter">E</span>
+        <span class="fcard-word">Expertise</span>
+        <div class="fcard-desc">Depth in KC; subconscious mastery</div>
+      </div>
+      <div class="fcard fcard-teal">
+        <span class="fcard-letter">P</span>
+        <span class="fcard-word">Perspective</span>
+        <div class="fcard-desc">Aerial view above the KC plane</div>
+      </div>
+      <div class="fcard fcard-plum">
+        <span class="fcard-letter">I</span>
+        <span class="fcard-word">Idea</span>
+        <div class="fcard-desc">New connections of KPs across clusters</div>
+      </div>
+      <div class="fcard fcard-ink">
+        <span class="fcard-letter">A</span>
+        <span class="fcard-word">Alignment</span>
+        <div class="fcard-desc">Multiple KCs converge toward one vision</div>
+      </div>
+    </div>
+
+    <h4>Detailed Explanations of Each SEPIA Force</h4>
+    <ul class="notes-list">
+      <li><strong>Skill:</strong> A <em>set pattern of Knowledge Packets</em> in a defined Knowledge Cluster, connected in a structured manner through training. Example: A car mechanic has a skill set — a precise sequence of KPs for diagnosing and fixing an engine. Skill is the foundation.</li>
+      <li><strong>Expertise:</strong> When a skill is used <em>repeatedly</em>, expertise builds. It is <strong>depth of knowledge within a cluster</strong>. An eye surgeon who once took 45 minutes for cataract surgery now completes it in under 15 minutes with greater accuracy — that is expertise removing redundant steps. Key insight: Expertise gives the ability to <em>observe patterns</em>.</li>
+      <li><strong>Perspective:</strong> The ability to <em>step above the KC plane</em> and gain an aerial view of multiple clusters and their connections. Unlike expertise (depth), perspective is <strong>height</strong>. It requires a substantially <em>detached mind</em> — looking at a problem from totally outside it. A CEO sees what individual department heads cannot; a consultant sees what the insider cannot.</li>
+      <li><strong>Idea:</strong> Connecting KPs in <em>unexpected new arrangements</em>. Two types:
+        <br>• <strong>Intra-space:</strong> New connections within the same KC
+        <br>• <strong>Inter-space:</strong> Connections across different KCs (the most powerful)
+        <br>Examples: Using a car engine for an elevator. Using internet protocol for e-commerce. Expertise and Perspective are the <em>base</em> from which ideas emerge.</li>
+      <li><strong>Alignment:</strong> When multiple Knowledge Clusters <em>converge above the plane</em> to achieve a common objective or vision. This is what makes large organisations design successfully — different functions aligned to one north star.</li>
+    </ul>
+
+    <h3>4.2 DCAFE — The 5 Frictional Forces That SLOW Design</h3>
+    <p>As operations scale, friction increases. Friction is not purely negative — the most important system in a high-speed car is its <strong>braking system</strong>. Friction can be retarding or creative depending on how it is channelled.</p>
+
+    <div class="mnemonic">
+      <span class="mnemonic-letter">D</span>
+      <span class="mnemonic-letter">C</span>
+      <span class="mnemonic-letter">A</span>
+      <span class="mnemonic-letter">F</span>
+      <span class="mnemonic-letter">E</span>
+    </div>
+
+    <div class="framework-grid framework-grid-5" style="gap:2px;margin:16px 0">
+      <div class="fcard" style="background:#8b4513;color:white">
+        <span class="fcard-letter">D</span>
+        <span class="fcard-word">Doubt</span>
+        <div class="fcard-desc">Antidote: Use as tool to spot failure points</div>
+      </div>
+      <div class="fcard" style="background:#6b3a8b;color:white">
+        <span class="fcard-letter">C</span>
+        <span class="fcard-word">Conflict</span>
+        <div class="fcard-desc">Antidote: Dialogue converts to creative conflict</div>
+      </div>
+      <div class="fcard" style="background:#8b1a1a;color:white">
+        <span class="fcard-letter">A</span>
+        <span class="fcard-word">Anger</span>
+        <div class="fcard-desc">Antidote: Acceptance</div>
+      </div>
+      <div class="fcard" style="background:#1a4a6b;color:white">
+        <span class="fcard-letter">F</span>
+        <span class="fcard-word">Fear</span>
+        <div class="fcard-desc">Antidote: Courage and conviction</div>
+      </div>
+      <div class="fcard" style="background:#2c4a1a;color:white">
+        <span class="fcard-letter">E</span>
+        <span class="fcard-word">Ego</span>
+        <div class="fcard-desc">Antidote: Humility and unlearning</div>
+      </div>
+    </div>
+
+    <h4>Detailed Explanations of Each DCAFE Force</h4>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">D — Doubt</span>
+      <p>Defined as <strong>uncertainty or indecision</strong> in opinion or belief. Expressions: "Have I taken the right decision? Do I have the right tools?" Doubt becomes a creative force when <em>flipped</em> — used as a diagnostic tool to spot failure points before they occur. The antidote to paralyzing doubt is trusting your own judgement while using doubt constructively.</p>
+    </div>
+
+    <div class="callout callout-story">
+      <span class="callout-label">C — Conflict (with Story)</span>
+      <p><strong>Story:</strong> A mother makes a beautiful yellow dress for her daughter. The daughter wants to wear her pink dress to a party. Just 30 minutes before leaving, conflict erupts. Both argue. The joyful mood is destroyed; they skip the party entirely.</p>
+      <p style="margin-top:12px"><strong>Lesson:</strong> Conflict is simply a <em>difference of opinion, perspective, or expectation</em>. Most conflicts are suppressed rather than resolved. Dialogue — not debate — is the tool that converts <strong>frictional conflict</strong> into <strong>creative conflict</strong>. When the mother and daughter had genuinely listened to each other's desires, they could have designed a third option.</p>
+    </div>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">A — Anger</span>
+      <p>Anger is a <strong>symbol of helplessness, not power</strong>. The quote: <em>"He who angers you, conquers you"</em> (Elizabeth Kenny). The visual of an Anger Meter shows incidents accumulating until a blowup threshold is crossed. The antidote is <strong>Acceptance</strong> — accepting the complexity and ambiguity inherent in the design journey.</p>
+    </div>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">F — Fear</span>
+      <p>Fear of going wrong · fear of failure · fear of commitment · fear of the unknown. Fear drives leaders toward <em>consensus decisions</em> — the safest, least offensive option, which is almost never the best design. The antidote is <strong>Courage and Conviction</strong> in understanding and delivering the stated and unstated needs of the customer.</p>
+    </div>
+
+    <div class="callout callout-story">
+      <span class="callout-label">E — Ego (The Zen Tea Cup Story)</span>
+      <p><strong>Story:</strong> A wealthy, important man visits a Zen master seeking wisdom. The master serves tea and keeps pouring even as the cup overflows. The visitor shouts, "The cup is full!" The master smiles: <em>"You are like this tea cup, so full that nothing more can be added. Come back to me with an empty mind."</em></p>
+      <p style="margin-top:12px">Ego is the "I know it all" roadblock to learning outside the Comfort Zone. It prevents new KPs from entering. The antidote is <strong>Humility and Unlearning</strong> — making your knowledge container <em>porous</em>. Unlearning is as important as learning; Alvin Toffler noted this, as did Greek philosopher Antisthenes (pupil of Socrates) in 445–365 BC — the principle has not changed in 2,400 years.</p>
+    </div>
+
+    <h3>4.3 VAL — The 3 Capacity Levers</h3>
+    <div class="mnemonic">
+      <span class="mnemonic-letter">V</span>
+      <span class="mnemonic-letter">A</span>
+      <span class="mnemonic-letter">L</span>
+    </div>
+
+    <div class="callout callout-insight">
+      <span class="callout-label">V — Vulnerability</span>
+      <p><strong>Comfort Zone defined:</strong> "A situation where one feels safe or at ease; a settled method of working that requires little effort and yields only barely acceptable results." People typically reach this zone after 7–10 years in an organisation.</p>
+      <p style="margin-top:10px"><strong>The power:</strong> When exposed to vulnerability — risk of being attacked or harmed physically or emotionally — the human mind thinks <span class="em">10 times faster</span> than usual (10X Capacity). Evidence from everyday life: Your thinking is sharper in a new city than your home city. Your execution accelerates dramatically just before a deadline. Arun Jain's personal example: moving from Polaris to Intellect was a deliberate choice of vulnerability that led to personal growth.</p>
+    </div>
+
+    <div class="callout callout-insight">
+      <span class="callout-label">A — Appreciation</span>
+      <p><strong>"Whatever you appreciate, appreciates."</strong></p>
+      <p>A survey of 200 extraordinary performers out of 12,000 employees at Polaris revealed 3 elements that shifted them from ordinary to extraordinary: <strong>Trust/Appreciation</strong> from someone · <strong>Vision</strong> they believed in · <strong>Space</strong> provided by their supervisor.</p>
+      <p style="margin-top:10px">The <strong>Self Worth Meter</strong> diagram shows: appreciation raises the "temperature" (Brilliant! → Fantastic! → Well Done!), while criticism drops it (Not Good! → Drop It!). The phrase "Main Hoon Na...!" ("I've got you / you're supported") captures the spirit of appreciative leadership.</p>
+    </div>
+
+    <div class="callout callout-story">
+      <span class="callout-label">L — Limiting Beliefs (The Elephant Story)</span>
+      <p><strong>Story:</strong> A man passes a group of elephants held only by a small rope tied to their front leg. No chains, no cages. The elephant could easily break free. A trainer explains: "When they were very young and much smaller, we used the same size rope. At that age, it held them. As they grew, they were conditioned to believe they cannot break away — so they never try."</p>
+      <p style="margin-top:10px"><strong>Lesson:</strong> Past failures create <strong>Holding KPs</strong> — Knowledge Packets that restrict potential. These "holding KPs" accumulate through external reinforcement ("you can't do this") and self-reinforcement ("I failed before, so I'll fail again"). They form <strong>Limiting Beliefs</strong> that function as capacity holders, keeping us tied to a rope that we could easily snap.</p>
+    </div>
+
+    <div class="mindmap">
+      <div class="mindmap-root">Chapter 4: Design Mind</div>
+      <div class="mindmap-l1">├── Knowledge Architecture</div>
+      <div class="mindmap-l2">├── KP → KC → Comfort Zone</div>
+      <div class="mindmap-l1">├── SEPIA (5 Growth Forces)</div>
+      <div class="mindmap-l2">├── Skill (training → structured KPs)</div>
+      <div class="mindmap-l2">├── Expertise (depth → pattern recognition)</div>
+      <div class="mindmap-l2">├── Perspective (height → aerial view)</div>
+      <div class="mindmap-l2">├── Idea (intra + inter-space connections)</div>
+      <div class="mindmap-l2">└── Alignment (KCs converge toward vision)</div>
+      <div class="mindmap-l1">├── DCAFE (5 Frictional Forces)</div>
+      <div class="mindmap-l2">├── Doubt → Antidote: Use as diagnostic tool</div>
+      <div class="mindmap-l2">├── Conflict → Antidote: Dialogue</div>
+      <div class="mindmap-l2">├── Anger → Antidote: Acceptance</div>
+      <div class="mindmap-l2">├── Fear → Antidote: Courage</div>
+      <div class="mindmap-l2">└── Ego → Antidote: Humility + Unlearning</div>
+      <div class="mindmap-l1">└── VAL (3 Capacity Levers)</div>
+      <div class="mindmap-l2">├── Vulnerability → 10X Capacity</div>
+      <div class="mindmap-l2">├── Appreciation → Self Worth Meter</div>
+      <div class="mindmap-l2">└── Limiting Beliefs → Holding KPs (Elephant story)</div>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>Which DCAFE force is currently acting as the biggest brake on your team's innovation? Specifically: is it Fear (of failure) or Ego (of admitting you don't know)? What would applying the corresponding antidote look like tomorrow morning?</p>
+    </div>
+  </div>
+
+  <!-- UNIT 4 -->
+  <div class="unit-header" id="ch5">
+    <span class="unit-label">Unit 4 · Chapter 5</span>
+    <div class="unit-title">The Design Process</div>
+    <p class="unit-desc">Five steps from feeling to telling — the engine that turns prepared minds into solutions.</p>
+  </div>
+
+  <!-- CHAPTER 5 -->
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">05</div>
+      <div>
+        <div class="chapter-title">The 5-Step Design Process©</div>
+        <div class="chapter-subtitle">Empathise → Define → Diverge → Converge → Communicate</div>
+      </div>
+    </div>
+
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="ps-num">1</div>
+        <span class="ps-name">Empathise</span>
+        <div class="ps-role">Cartographer + Detective</div>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">2</div>
+        <span class="ps-name">Define</span>
+        <div class="ps-role">Reporter</div>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">3</div>
+        <span class="ps-name">Diverge</span>
+        <div class="ps-role">Brainstormer</div>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">4</div>
+        <span class="ps-name">Converge</span>
+        <div class="ps-role">Editor</div>
+      </div>
+      <div class="process-step">
+        <div class="ps-num">5</div>
+        <span class="ps-name">Communicate</span>
+        <div class="ps-role">Movie Director</div>
+      </div>
+    </div>
+
+    <h3>Step 1: Empathise (Feel)</h3>
+    <p>The starting point is always understanding <strong>desirability</strong> — from the customer's perspective, not the designer's. Key insight: "We start solving symptoms rather than the actual problem." The more time spent crystallising desirability, the better the problem-solving.</p>
+
+    <div class="callout callout-example">
+      <span class="callout-label">Two Modes: Cartographer + Detective</span>
+      <p><strong>As a Cartographer:</strong> Plot all elements and actors of the system on a sheet. Create the Level 0 (L0) Macro Framework — the bird's eye view of all stakeholders and their relationships. Ask What, Who, and Where.</p>
+      <p style="margin-top:10px"><strong>As a Detective:</strong> Wear the detective's hat to find the <em>real issue or desirability</em> buried under the symptoms. Look for unstated needs. Consider Design Mind elements: Skills, Expertise, Perspectives, Doubts, Conflicts, Fears, Comfort Zones, Limiting Beliefs, Biases.</p>
+      <p style="margin-top:10px"><strong>Tools:</strong> Persona Mapping · Empathy Mapping · L0 Architecture · Existing research data sets · Competitor data</p>
+    </div>
+
+    <h3>Step 2: Define (Synthesise)</h3>
+    <p>The Define step applies <strong>Law 1 (Less is More)</strong> and <strong>Law 3 (Prioritisation)</strong> to converge from all empathy data onto the real problem statement.</p>
+    <ul class="notes-list">
+      <li><strong>5 Whys Tool:</strong> Ask Why for every answer. Keep asking "Why?" until you reach boredom or irritation — that's when you've hit the root cause. Ask questions starting with "Why?"</li>
+      <li><strong>Define in 5–7 words:</strong> Brevity creates focus. Forcing the problem into 5–7 words forces prioritisation.</li>
+      <li><strong>Paraphrase Positively:</strong> "Reduce Attrition" → "Enhance Retention." Positive framing opens the mind to possibilities instead of closing it around problems.</li>
+      <li><strong>Role: The Reporter</strong> — asking the right questions, not assuming answers.</li>
+    </ul>
+
+    <h3>Step 3: Diverge (Ideate)</h3>
+    <p>Divergence means bringing <strong>multiple expertises and multiple perspectives simultaneously</strong> to generate ideas. No judgement allowed — "No idea is bad" is the governing principle.</p>
+    <ul class="notes-list">
+      <li><strong>Round 1 — Positive Patterns (Green Post-its):</strong> Collect best practices from within your organisation, competitor organisations, and other industries. Cross-industry ideas bring the strongest new perspectives.</li>
+      <li><strong>Round 2 — Anti-Patterns (Red/Pink Post-its):</strong> What fails consistently in real-life situations? Anti-patterns are repeated failures that nobody is solving. These are often the richest source of breakthrough ideas.</li>
+      <li><strong>Group into sub-groups:</strong> Divide participants into multiple groups to maximise diversity. Challenge all existing assumptions, biases, processes, and policies.</li>
+      <li><strong>Tools:</strong> Brainstorming · Pattern Cards · Anti-Pattern Cards</li>
+    </ul>
+
+    <h3>Step 4: Converge (Connect the Dots)</h3>
+    <p>At this stage you have 50–200 ideas. Time to apply the 3rd Law of Design Thinking ruthlessly.</p>
+    <ul class="notes-list">
+      <li><strong>A — Create Affinity Clusters:</strong> Paste post-its on visible boards; let the group make grouping choices. Ideas become owned by the group, not by individuals (eliminates the "my idea" syndrome).</li>
+      <li><strong>B — Connect Similar Ideas:</strong> When multiple ideas are connected, they move from idea to solution. The group starts owning solutions.</li>
+      <li><strong>C — Classify Ideas:</strong> Quick Impact · Bold Impact · Long-Lasting Impact</li>
+      <li><strong>D — Delete 80%:</strong> Use the 10g/100g/1000g prioritisation framework. Multi-voting by the group. Ruthlessly eliminate everything that isn't 1000g.</li>
+      <li><strong>E — Prototype:</strong> Build and test the 2–3 surviving solutions. May require returning to Step 2 or 3 if results don't produce a "wow" feeling.</li>
+    </ul>
+
+    <h3>Step 5: Communicate (Tell Your Story)</h3>
+    <p>A solution that cannot be communicated cannot be institutionalised. The movie director analogy is instructive — even the greatest film needs masterful marketing and distribution.</p>
+    <ul class="notes-list">
+      <li><strong>A — Naming:</strong> Choose keywords that define the solution. New vocabulary gets attention. Example: "Shift Left" instead of "proactive planning" — a terminology shift that transformed delivery excellence at Intellect Design Arena.</li>
+      <li><strong>B — Packaging:</strong> Wrap the solution in a coherent form.</li>
+      <li><strong>C — Story Boarding:</strong> Create a storyboard like a movie director. This unlocks hidden creative talent.</li>
+      <li><strong>D — Presentation:</strong> Present to stakeholders with the story.</li>
+      <li><strong>E — Distribution:</strong> White papers · Advertising · Social media · Group presentations · Webinars</li>
+    </ul>
+
+    <div class="mindmap">
+      <div class="mindmap-root">Chapter 5: 5-Step Design Process</div>
+      <div class="mindmap-l1">├── Step 1: Empathise</div>
+      <div class="mindmap-l2">├── Cartographer (L0 framework, map the system)</div>
+      <div class="mindmap-l2">├── Detective (find real issue, not symptoms)</div>
+      <div class="mindmap-l2">└── Tools: Persona map, Empathy map, L0 architecture</div>
+      <div class="mindmap-l1">├── Step 2: Define</div>
+      <div class="mindmap-l2">├── 5 Whys chain (ask until irritated)</div>
+      <div class="mindmap-l2">├── 5–7 word problem statement</div>
+      <div class="mindmap-l2">└── Paraphrase positively (Attrition → Retention)</div>
+      <div class="mindmap-l1">├── Step 3: Diverge</div>
+      <div class="mindmap-l2">├── Green post-its: positive patterns + best practices</div>
+      <div class="mindmap-l2">├── Red post-its: anti-patterns + failures</div>
+      <div class="mindmap-l2">└── No judgement; "No idea is bad"</div>
+      <div class="mindmap-l1">├── Step 4: Converge</div>
+      <div class="mindmap-l2">├── Affinity clusters (group ownership of ideas)</div>
+      <div class="mindmap-l2">├── Classify: Quick / Bold / Long-lasting</div>
+      <div class="mindmap-l2">├── Delete 80% (10g/100g/1000g)</div>
+      <div class="mindmap-l2">└── Prototype 2–3 solutions</div>
+      <div class="mindmap-l1">└── Step 5: Communicate</div>
+      <div class="mindmap-l2">├── Name → Package → Storyboard</div>
+      <div class="mindmap-l2">└── Present → Distribute (white papers, social, webinars)</div>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>In the Divergence phase, anti-patterns are golden. What are the consistent, repeated failures in your industry that everyone acknowledges but nobody is actively designing a solution for?</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 6 -->
+  <div class="chapter" id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num">06</div>
+      <div>
+        <div class="chapter-title">Design Frameworks</div>
+        <div class="chapter-subtitle">The "knowledge shelving and wiring" system that makes solutions repeatable</div>
+      </div>
+    </div>
+
+    <h3>6.1 Definition of a Framework</h3>
+    <div class="callout callout-definition">
+      <span class="callout-label">Definition</span>
+      <p>A Framework is <strong>"knowledge shelving and wiring"</strong> — a taxonomy that places knowledge into appropriate shelves, then connects (wires) those shelves to create actionable, navigable architecture.</p>
+    </div>
+
+    <h3>6.2 The Four Knowledge Architecture Levels</h3>
+    <div class="levels">
+      <div class="level-row">
+        <div class="level-label">L0</div>
+        <div class="level-content"><strong>Macro Reference Architecture:</strong> The identifier for each major column/shelf. The highest-level view — what are the major domains? (e.g., Brand, Customer, Leadership, Product, Execution, Finance)</div>
+      </div>
+      <div class="level-row">
+        <div class="level-label">L1</div>
+        <div class="level-content"><strong>Column Details:</strong> Each L0 column is expanded one level deeper. What are the components within each major domain?</div>
+      </div>
+      <div class="level-row">
+        <div class="level-label">L2</div>
+        <div class="level-content"><strong>User Journeys:</strong> L1 components are expanded into the actual journeys that users experience. How does a customer move through this domain step by step?</div>
+      </div>
+      <div class="level-row">
+        <div class="level-label">L3</div>
+        <div class="level-content"><strong>Micro Knowledge — Patterns & Anti-Patterns:</strong> The granular level. What works reliably (patterns)? What fails reliably (anti-patterns)? This is where expertise and last-2% live.</div>
+      </div>
+    </div>
+
+    <h3>6.3 The BELIEF© Framework</h3>
+    <div class="mnemonic">
+      <span class="mnemonic-letter">B</span>
+      <span class="mnemonic-letter">E</span>
+      <span class="mnemonic-letter">L</span>
+      <span class="mnemonic-letter">I</span>
+      <span class="mnemonic-letter">E</span>
+      <span class="mnemonic-letter">F</span>
+    </div>
+    <div class="framework-grid framework-grid-3" style="gap:8px;margin:16px 0">
+      <div class="callout callout-definition" style="margin:0;text-align:center">
+        <span class="callout-label">B</span>
+        <p><strong>Brand Capital</strong><br><small>How strong is the brand in the market?</small></p>
+      </div>
+      <div class="callout callout-example" style="margin:0;text-align:center">
+        <span class="callout-label">E</span>
+        <p><strong>End Customer Capital</strong><br><small>Depth of customer relationships</small></p>
+      </div>
+      <div class="callout callout-story" style="margin:0;text-align:center">
+        <span class="callout-label">L</span>
+        <p><strong>Leadership Capital</strong><br><small>Strength of leadership pipeline</small></p>
+      </div>
+      <div class="callout callout-insight" style="margin:0;text-align:center">
+        <span class="callout-label">I</span>
+        <p><strong>Intellectual Product Capital</strong><br><small>IP, patents, proprietary methods</small></p>
+      </div>
+      <div class="callout callout-definition" style="margin:0;text-align:center">
+        <span class="callout-label">E</span>
+        <p><strong>Execution Capital</strong><br><small>Delivery reliability and throughput</small></p>
+      </div>
+      <div class="callout callout-example" style="margin:0;text-align:center">
+        <span class="callout-label">F</span>
+        <p><strong>Finance Capital</strong><br><small>Financial health and sustainability</small></p>
+      </div>
+    </div>
+
+    <h3>6.4 Types of Design Frameworks</h3>
+    <ul class="notes-list">
+      <li><strong>Business Framework:</strong> Maps the entire business architecture (e.g., the Global Universal Banking framework showing all banking functions from Branch to ATM to Core Banking)</li>
+      <li><strong>Knowledge Framework:</strong> The BELIEF framework — a 6-column L0 wired architecture for assessing organisational health</li>
+      <li><strong>Execution Framework:</strong> D-3 OTIF — balancing On Time (Planning, Monitoring) and In Full (User Journey, Engineering Blueprint), filtered through Design, Diagnostics, Patterns, Anti-Patterns to achieve Higher Throughput</li>
+      <li><strong>Performance Management Framework:</strong> For measuring and managing ongoing execution</li>
+      <li><strong>Community Development Framework:</strong> Mission Samriddhi — applying design thinking to social development with 50+ NGOs</li>
+    </ul>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>Does your organisation have an explicit L0 framework? If you had to draw the top 5–6 columns of your business on a single page, what would they be? Does everyone on your leadership team agree on those same columns?</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 7 -->
+  <div class="chapter" id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num">07</div>
+      <div>
+        <div class="chapter-title">Space, Methods and Tools</div>
+        <div class="chapter-subtitle">The physical and behavioural environment that sustains design thinking</div>
+      </div>
+    </div>
+
+    <h3>7.1 The Physical Design Space</h3>
+    <p>The environment is not neutral — it actively shapes the quality of thinking. Design Thinking requires a deliberately curated physical space:</p>
+    <ul class="notes-list">
+      <li><strong>Visual Devices:</strong> For stating and displaying problems</li>
+      <li><strong>Tactile Devices:</strong> Cuboids, drawing on large sheets (physical manipulation of ideas)</li>
+      <li><strong>9-Screen Video Walls:</strong> For displaying multiple perspectives simultaneously</li>
+      <li><strong>Large Whiteboards:</strong> Benzene structure arrangements for free-form thinking</li>
+      <li><strong>Interactive Screens:</strong> For digital collaboration</li>
+      <li><strong>Magnetic Boards:</strong> For flexible idea organisation</li>
+      <li><strong>Role Play Setups:</strong> For empathy exercises and perspective shifts</li>
+    </ul>
+
+    <h3>7.2 Growth Mindset Methods</h3>
+    <p>Seven methods for continuously expanding the capacity to design:</p>
+
+    <div class="framework-grid framework-grid-3" style="gap:12px;margin:16px 0">
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Active Listening & Reading</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Absorb without filtering through past knowledge</div>
+      </div>
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Dialogue & Asking Questions</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Questions starting with Why, What, Who, Where</div>
+      </div>
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Observing Patterns & Anti-Patterns</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Systematic noticing of what works and fails</div>
+      </div>
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Diagnostics — 5 Whys</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Root cause drill-down until irritated</div>
+      </div>
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Decisions — 10g/100g/1000g</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Exponential prioritisation in all decisions</div>
+      </div>
+      <div class="fcard fcard-light">
+        <span class="fcard-word">Role Modelling</span>
+        <div class="fcard-desc" style="color:var(--ink-muted)">Learning by observing masters in action</div>
+      </div>
+    </div>
+    <p>Plus: <strong>Having a Sounding Board</strong> — a trusted person outside your KC who can provide perspective.</p>
+
+    <h3>7.3 Sustainable Thinking Shift Tool Set (8 Tools)</h3>
+    <p>Tools to institutionalise the shift in thinking beyond workshops:</p>
+
+    <div class="framework-grid framework-grid-2" style="gap:12px;margin:16px 0">
+      <div class="callout callout-example" style="margin:0">
+        <span class="callout-label">T1 — Circle Time</span>
+        <p>Regular group reflection sessions to maintain the design thinking culture.</p>
+      </div>
+      <div class="callout callout-example" style="margin:0">
+        <span class="callout-label">T2 — L0–L3 Architecture</span>
+        <p>Continuously maintaining and updating the knowledge framework levels.</p>
+      </div>
+      <div class="callout callout-definition" style="margin:0">
+        <span class="callout-label">T3 — Persona End State Visualisation</span>
+        <p>Vividly imagining the persona's desired end state to maintain empathy focus.</p>
+      </div>
+      <div class="callout callout-definition" style="margin:0">
+        <span class="callout-label">T4 — End State Visualisation</span>
+        <p>Full visualisation of the desired outcome to guide design direction.</p>
+      </div>
+      <div class="callout callout-story" style="margin:0">
+        <span class="callout-label">T5 — Journey Map</span>
+        <p>Mapping the full user journey to identify design intervention points.</p>
+      </div>
+      <div class="callout callout-story" style="margin:0">
+        <span class="callout-label">T6 — Anti-Pattern / Pattern Cards</span>
+        <p>Structured cards capturing what consistently fails vs. what consistently works.</p>
+      </div>
+      <div class="callout callout-insight" style="margin:0">
+        <span class="callout-label">T7 — Shift Left / Shift Down / Shift Out</span>
+        <p>Proactively move problems to earlier stages in the process before they become expensive. "Shift Left" = catch issues in design, not deployment.</p>
+      </div>
+      <div class="callout callout-insight" style="margin:0">
+        <span class="callout-label">T8 — Theory of Constraints</span>
+        <p>Identify the single biggest bottleneck in the system and focus all improvement energy there.</p>
+      </div>
+    </div>
+
+    <div class="reflection">
+      <span class="reflection-label">Reflective Question</span>
+      <p>Of the 8 Sustainable Thinking Shift tools, which one would have the greatest immediate impact if your team adopted it next week? What would "Circle Time" look like in your context — and what would stop you from starting it?</p>
+    </div>
+  </div>
+
+  <!-- QUICK REVISION -->
+  <div class="unit-header" id="revision">
+    <span class="unit-label">Revision Section</span>
+    <div class="unit-title">Quick Revision Sheet</div>
+    <p class="unit-desc">Everything distilled. Review this 10 minutes before any exam or design session.</p>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">⚡ Core Mnemonics</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <h4>SEPIA (5 Growth Forces)</h4>
+        <ul class="notes-list">
+          <li><strong>S</strong>kill — structured KPs via training</li>
+          <li><strong>E</strong>xpertise — depth, removes redundancy</li>
+          <li><strong>P</strong>erspective — height, detached aerial view</li>
+          <li><strong>I</strong>dea — new KP connections (intra/inter)</li>
+          <li><strong>A</strong>lignment — KCs converge to vision</li>
+        </ul>
+      </div>
+      <div>
+        <h4>DCAFE (5 Frictional Forces)</h4>
+        <ul class="notes-list">
+          <li><strong>D</strong>oubt → Diagnostic tool for failures</li>
+          <li><strong>C</strong>onflict → Dialogue = creative conflict</li>
+          <li><strong>A</strong>nger → Acceptance (helplessness, not power)</li>
+          <li><strong>F</strong>ear → Courage and conviction</li>
+          <li><strong>E</strong>go → Humility + Unlearning (empty cup)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>VAL (3 Capacity Levers)</h4>
+        <ul class="notes-list">
+          <li><strong>V</strong>ulnerability → 10X thinking capacity</li>
+          <li><strong>A</strong>ppreciation → "Whatever you appreciate, appreciates"</li>
+          <li><strong>L</strong>imiting Beliefs → Holding KPs (elephant story)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>BELIEF© Framework</h4>
+        <ul class="notes-list">
+          <li><strong>B</strong>rand Capital</li>
+          <li><strong>E</strong>nd Customer Capital</li>
+          <li><strong>L</strong>eadership Capital</li>
+          <li><strong>I</strong>ntellectual Product Capital</li>
+          <li><strong>E</strong>xecution Capital</li>
+          <li><strong>F</strong>inance Capital</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">📐 Three Laws — One-Line Each</div>
+    <ul class="notes-list">
+      <li><strong>Law 1: Less is More</strong> — Remove redundancy; focus only on what matters most. Chaos → clean cylinder.</li>
+      <li><strong>Law 2: Last 2% = 200%</strong> — Your USP (the final differentiator) creates disproportionate value. Find it.</li>
+      <li><strong>Law 3: Theory of Prioritisation</strong> — Think exponentially: 10g / 100g / 1000g. Focus on 1000g items; delete 10g distractions.</li>
+    </ul>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">🔄 5-Step Design Process — Roles & Tools</div>
+    <table class="compare-table">
+      <tr><th>Step</th><th>Action</th><th>Role</th><th>Key Tools</th></tr>
+      <tr><td><strong>1. Empathise</strong></td><td>Feel from customer's shoes</td><td>Cartographer + Detective</td><td>Persona map, Empathy map, L0</td></tr>
+      <tr><td><strong>2. Define</strong></td><td>Synthesise to real problem</td><td>Reporter</td><td>5 Whys, Positive paraphrase</td></tr>
+      <tr><td><strong>3. Diverge</strong></td><td>Generate ideas (no filter)</td><td>Brainstormer</td><td>Brainstorming, Pattern/Anti-pattern cards</td></tr>
+      <tr><td><strong>4. Converge</strong></td><td>Cluster, connect, delete 80%</td><td>Editor</td><td>Affinity clusters, 10/100/1000g</td></tr>
+      <tr><td><strong>5. Communicate</strong></td><td>Name, package, distribute</td><td>Movie Director</td><td>Storyboard, White papers, Social</td></tr>
+    </table>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">🏗 Framework Architecture Levels</div>
+    <ul class="notes-list">
+      <li><strong>L0:</strong> Macro architecture — column identifiers (e.g., Brand, Customer, Leadership)</li>
+      <li><strong>L1:</strong> Column details — components within each L0 domain</li>
+      <li><strong>L2:</strong> User journeys — step-by-step user experience flows</li>
+      <li><strong>L3:</strong> Micro knowledge — patterns (what works) + anti-patterns (what fails)</li>
+    </ul>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">📖 Three Definitions of Design Thinking</div>
+    <ul class="notes-list">
+      <li><strong>IDEO Model:</strong> Intersection of Desirability (human) + Feasibility (tech) + Viability (business)</li>
+      <li><strong>Roger Martin's Funnel:</strong> Mystery → Heuristic → Algorithm (moving knowledge from unknown to codified)</li>
+      <li><strong>Arun Jain's Model:</strong> Stated + Unstated requirements · Patterns + Anti-patterns · Within + Outside box · Unearthing blind spots</li>
+    </ul>
+  </div>
+
+  <div class="revision-card">
+    <div class="revision-title">💬 Key Quotes to Remember</div>
+    <ul class="notes-list">
+      <li><em>"He who angers you, conquers you."</em> — Elizabeth Kenny (on Anger/DCAFE)</li>
+      <li><em>"Come back to me with an empty mind."</em> — Zen Master (on Ego/Unlearning)</li>
+      <li><em>"Whatever you appreciate, appreciates."</em> — Arun Jain (on Appreciation/VAL)</li>
+      <li><em>"If you listen with knowledge, you are not listening."</em> — J. Krishnamurti (on True Listening)</li>
+      <li><em>"Insatiable curiosity that drives the learner..."</em> — Carl Rogers (on True Learning)</li>
+    </ul>
+  </div>
+
+  <!-- MASTER MIND MAP -->
+  <div class="unit-header" id="mindmap">
+    <span class="unit-label">Visual Section</span>
+    <div class="unit-title">Master Mind Map</div>
+    <p class="unit-desc">The complete book on one page. How all concepts connect hierarchically.</p>
+  </div>
+
+  <div class="mindmap">
+    <div class="mindmap-root">📚 UnMukt: Science & Art of Design Thinking — Arun Jain</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.1] Introduction: Foundations of Mind</div>
+    <div class="mindmap-l2">├── Learning Process (Observation + Experiential + Intention)</div>
+    <div class="mindmap-l3">└── Layers: Perception → Conception → Judgement → Retention</div>
+    <div class="mindmap-l2">├── Listening (Krishnamurti: suspend the past)</div>
+    <div class="mindmap-l2">├── Dialogue (alternatives) vs Discussion (who is right)</div>
+    <div class="mindmap-l2">└── Observation + Reading (expand KPs, unearth blind spots)</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.2] Design Definitions & Stories</div>
+    <div class="mindmap-l2">├── Case Study: Sikhism (community design)</div>
+    <div class="mindmap-l2">├── Definition 1: IDEO (Desirability + Feasibility + Viability)</div>
+    <div class="mindmap-l2">├── Definition 2: Roger Martin (Mystery → Heuristic → Algorithm)</div>
+    <div class="mindmap-l2">├── Definition 3: Jain Model (Requirements · Patterns · Dots · Blindspots)</div>
+    <div class="mindmap-l2">├── Case Study: Devanagari Script (sound-source design)</div>
+    <div class="mindmap-l2">└── Case Study: South Indian Food Chain (adversity as design)</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.3] Three Laws of Design Thinking©</div>
+    <div class="mindmap-l2">├── Law 1: Less is More (simplify, remove redundancy)</div>
+    <div class="mindmap-l2">├── Law 2: Last 2% = 200% (find the USP differentiator)</div>
+    <div class="mindmap-l2">└── Law 3: Theory of Prioritisation (10g / 100g / 1000g)</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.4] Design Mind — The Human Operating System</div>
+    <div class="mindmap-l2">├── Anatomy: KP → KC → Comfort Zone</div>
+    <div class="mindmap-l2">├── SEPIA (5 Growth Forces That Drive Design)</div>
+    <div class="mindmap-l3">├── Skill · Expertise · Perspective · Idea · Alignment</div>
+    <div class="mindmap-l2">├── DCAFE (5 Frictional Forces That Slow Design)</div>
+    <div class="mindmap-l3">├── Doubt · Conflict · Anger · Fear · Ego</div>
+    <div class="mindmap-l3">└── Antidotes: Diagnostic · Dialogue · Acceptance · Courage · Humility</div>
+    <div class="mindmap-l2">└── VAL (3 Capacity Levers)</div>
+    <div class="mindmap-l3">└── Vulnerability (10X) · Appreciation (Self Worth) · Limiting Beliefs (Elephant)</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.5] Design Process — The 5-Step Engine</div>
+    <div class="mindmap-l2">├── Step 1: Empathise (Cartographer + Detective)</div>
+    <div class="mindmap-l2">├── Step 2: Define (Reporter; 5 Whys; positive paraphrase)</div>
+    <div class="mindmap-l2">├── Step 3: Diverge (patterns + anti-patterns; no judgement)</div>
+    <div class="mindmap-l2">├── Step 4: Converge (affinity clusters; delete 80%)</div>
+    <div class="mindmap-l2">└── Step 5: Communicate (name → package → storyboard → distribute)</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">├── [Ch.6] Design Frameworks — The Knowledge Architecture</div>
+    <div class="mindmap-l2">├── L0 (Macro) → L1 (Details) → L2 (Journeys) → L3 (Patterns)</div>
+    <div class="mindmap-l2">├── BELIEF© Framework (B·E·L·I·E·F)</div>
+    <div class="mindmap-l2">└── Types: Business · Knowledge · Execution · Performance · Community</div>
+    <div class="mindmap-l1">│</div>
+    <div class="mindmap-l1">└── [Ch.7] Space, Methods & Tools — The Ecosystem</div>
+    <div class="mindmap-l2">├── Physical Design Space (whiteboard · 9-screen · magnetic board)</div>
+    <div class="mindmap-l2">├── Growth Mindset Methods (7 practices)</div>
+    <div class="mindmap-l2">└── Sustainable Thinking Shift (8 tools: T1 Circle Time → T8 Theory of Constraints)</div>
+  </div>
+
+  <!-- CONCEPT CONNECTIONS -->
+  <div class="unit-header" id="connections">
+    <span class="unit-label">Synthesis Section</span>
+    <div class="unit-title">Key Concept Connections</div>
+    <p class="unit-desc">How does everything wire together? The living system view.</p>
+  </div>
+
+  <div class="chapter" style="border-bottom:none">
+    <h3>The Five-Layer System</h3>
+    <p>The genius of UnMukt is that it is not a linear methodology but a <strong>living system</strong>. Here is how the five components interact:</p>
+
+    <div class="callout callout-insight">
+      <span class="callout-label">Layer 1: The Seed — The Design Mind</span>
+      <p>Everything begins with the human mind. Before any process is useful, the mind must be prepared. <strong>SEPIA</strong> forces must be cultivated (Skill → Expertise → Perspective → Idea → Alignment), while <strong>DCAFE</strong> forces must be diagnosed and neutralised (Doubt, Conflict, Anger, Fear, Ego). The <strong>VAL</strong> levers expand capacity. Without this inner work, the 5-step process is just another workshop.</p>
+    </div>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">Layer 2: The Engine — The 5-Step Process</span>
+      <p>Once the mind is prepared through unlearning and humility (empty cup), it enters the Design Process: Empathise → Define → Diverge → Converge → Communicate. This is the operational machinery. Note: Step 1 (Empathise) uses Design Mind tools (persona, empathy map). Steps 3 and 4 use SEPIA forces (diverse expertise) and manage DCAFE risks (no judgement in Diverge).</p>
+    </div>
+
+    <div class="callout callout-example">
+      <span class="callout-label">Layer 3: The Governor — The Three Laws</span>
+      <p>As ideas flow through the engine, the Three Laws act as quality governors. Law 1 (Less is More) governs Convergence — ruthlessly eliminating 80%. Law 2 (Last 2% = 200%) governs the Communicate step — finding the USP. Law 3 (Prioritisation) governs both Define and Convergence — 1000g items only.</p>
+    </div>
+
+    <div class="callout callout-story">
+      <span class="callout-label">Layer 4: The Output — Frameworks</span>
+      <p>Solutions from the process are not left floating. They are wired into structured Frameworks (L0→L1→L2→L3, BELIEF, D-3 OTIF) that make the solution repeatable, scalable, and teachable. This is how a design insight becomes institutional knowledge.</p>
+    </div>
+
+    <div class="callout callout-definition">
+      <span class="callout-label">Layer 5: The Soil — Space & Growth Mindset</span>
+      <p>All of this occurs within a deliberately curated physical Design Space using visual, tactile, and interactive tools. The 7 Growth Mindset practices and 8 Sustainable Thinking Shift tools maintain the ecosystem — ensuring the system keeps running, not just producing a one-time workshop output.</p>
+    </div>
+
+    <h3>The Dialogue-Conflict-Design Triangle</h3>
+    <p>One of the most elegant insights in the book: Conflict (DCAFE) seems purely negative but is actually the raw material for design when processed through Dialogue (Chapter 1). The mother-daughter dress story shows frictional conflict. Had they engaged in Dialogue, they would have created a third option — a <em>designed solution</em>. This connects Chapter 1's Listening → Chapter 4's DCAFE → Chapter 5's Diverge step (where conflicting ideas are celebrated, not suppressed).</p>
+
+    <h3>The Vulnerability-Expertise-Idea Chain</h3>
+    <p>Choosing Vulnerability (VAL Lever 1) expands comfort zone → which exposes you to new KCs → which builds new Expertise (SEPIA) → which creates the base from which new Ideas (SEPIA) emerge. The author's personal journey from Nucleus to Polaris to Intellect is a lived demonstration of this chain.</p>
+
+    <h3>The Anti-Pattern Bridge</h3>
+    <p>Anti-patterns appear in three separate parts of the book: in Definition 3 (observing what fails), in the Diverge step (red post-it cards), and in the L3 level of frameworks. This repetition is intentional — <em>what fails is data; what consistently fails across organisations is a design opportunity nobody has seized yet.</em></p>
+
+    <div class="reflection">
+      <span class="reflection-label">Final Reflective Question</span>
+      <p>If you had to start implementing Design Thinking in your organisation tomorrow — not a workshop, but a genuine cultural shift — which single layer of the five would you start with, and what would your first concrete action be?</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:12px;color:rgba(250,248,242,0.7);font-style:italic;font-family:'Source Serif 4',serif;font-size:14px">
+    "Experience and Learn the Boundaryless World — with a feeling of joy and without fear."
+  </div>
+  <div>UnMukt: Science and Art of Design Thinking · Arun Jain · School of Design Thinking · 2020</div>
+  <div style="margin-top:8px">Complete Learning Resource — Professor's Edition · All 7 Chapters · SEPIA · DCAFE · VAL · 3 Laws · 5 Steps · BELIEF</div>
+</footer>
+
+</body>
+</html>
